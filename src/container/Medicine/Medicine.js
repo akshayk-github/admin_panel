@@ -30,7 +30,21 @@ function Medicine(props) {
             quantity,
             expiry
         }
-        console.log(data);
+
+        let medicineData = JSON.parse(localStorage.getItem('medicine'));
+
+        let medicineArray = [];
+
+        if (medicineData == null) {
+            localStorage.setItem('medicine', JSON.stringify([data]));
+            console.log(medicineArray);
+        }else {
+            medicineData.push(data)
+            localStorage.setItem('medicine', JSON.stringify(medicineData));
+        }
+        handleClose();
+
+        // console.log(data);
     }
 
     

@@ -51,7 +51,7 @@ function Medicine(props) {
 
         let GFilter = getDataItem.filter((g, i) => g.id !== did)
 
-        localStorage.setItem("employee", JSON.stringify(GFilter))
+        localStorage.setItem("medicine", JSON.stringify(GFilter))
         getdata();
         deleteopen(false);
     }
@@ -130,7 +130,7 @@ function Medicine(props) {
                     <DialogTitle>Are you sure Delete ?</DialogTitle>
                     <DialogActions>
                         <Button onClick={handleClose}>No</Button>
-                        <Button onClick={handleDelete}>Yes</Button>
+                        <Button onClick={() => handleDelete()}>Yes</Button>
                     </DialogActions>
                 </Dialog>
             </div>

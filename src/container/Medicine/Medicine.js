@@ -10,6 +10,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import { Form, Formik } from 'formik';
 
 function Medicine(props) {
 
@@ -53,7 +54,7 @@ function Medicine(props) {
 
         localStorage.setItem("medicine", JSON.stringify(GFilter))
         getdata();
-        deleteopen(false);
+        setDeleteopen(false);
     }
 
     const handleSubmit = () => {
@@ -97,6 +98,11 @@ function Medicine(props) {
     )
 
 
+    const handleClickEditOpen = () => {
+        setEditopen(true);
+    }
+
+
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'name', headerName: 'Medicine name', width: 130 },
@@ -111,7 +117,7 @@ function Medicine(props) {
                         <IconButton onClick={() => handleClickdelete(params.id)} aria-label="delete">
                             <DeleteIcon />
                         </IconButton>
-                        <IconButton onClick={() => handleClickOpen(params.id)} aria-label="edit">
+                        <IconButton onClick={() => handleClickEditOpen(params.id)} aria-label="edit">
                             <EditIcon />
                         </IconButton>
                     </>
@@ -140,57 +146,65 @@ function Medicine(props) {
                     Medicine
                 </Button>
                 <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Medicine Data</DialogTitle>
-                    <DialogContent>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            name="name"
-                            label="Name"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="price"
-                            name="price"
-                            label="Price"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            onChange={(e) => setPrice(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="quantity"
-                            name="quantity"
-                            label="Quantity"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            onChange={(e) => setQuantity(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="expiry"
-                            name="expiry"
-                            label="Expiry"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            onChange={(e) => setExpiry(e.target.value)}
-                        />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleSubmit}>Submit</Button>
-                    </DialogActions>
+                    {/* <Formik> */}
+                        {/* <Form> */}
+                            <DialogTitle>Medicine Data</DialogTitle>
+                            <DialogContent>
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="name"
+                                    name="name"
+                                    label="Name"
+                                    // value={Formik.value.name}
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={(e) => setName(e.target.value)} // without formik
+                                />
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="price"
+                                    name="price"
+                                    label="Price"
+                                    // value={Formik.value.price}
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                onChange={(e) => setPrice(e.target.value)}
+                                />
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="quantity"
+                                    name="quantity"
+                                    label="Quantity"
+                                    // value={Formik.value.quantity}
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={(e) => setQuantity(e.target.value)}
+                                />
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="expiry"
+                                    name="expiry"
+                                    label="Expiry"
+                                    // value={Formik.value.expiry}
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={(e) => setExpiry(e.target.value)}
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button onClick={handleSubmit}>Submit</Button>
+                            </DialogActions>
+                        {/* </Form> */}
+                    {/* </Formik> */}
                 </Dialog>
             </div>
 
